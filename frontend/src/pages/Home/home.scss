@@ -1,0 +1,14 @@
+.home {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    max-width: 100vw;
+    border: solid 1px;
+
+    @media (min-width:778px) {
+        width: 95vw;
+        max-width: 95vw;
+    }
+}

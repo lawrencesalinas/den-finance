@@ -1,0 +1,28 @@
+.expense {
+    display: flex;
+    flex-direction: column;
+    color: #585555;
+    width: 100%;
+
+    @media (min-width: 768px) {
+        width: 98%;
+    }
+
+    .header-row {
+        display: flex;
+        justify-content: space-around;
+        padding: 14px;
+        border-bottom: 1px solid #8888;
+        font-size: 14px;
+
+        @media (max-width: 200px) {
+            font-size: 4vw;
+        }
+
+        p {
+            font-weight: 700;
+            width: 100px;
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+.expenseHeader {
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    h2 {
+        margin: 10px 0 0px 40px;
+        font-size: 20px;
+        color: rgb(225, 79, 79);
+        margin-bottom: 20px;
+    }
+
+    .icons {
+        display: flex;
+        position: relative;
+        margin: 10px 40px 0 0;
+        gap: 20px;
+
+        .icon {
+            gap: 20px;
+        }
+    }
+}
