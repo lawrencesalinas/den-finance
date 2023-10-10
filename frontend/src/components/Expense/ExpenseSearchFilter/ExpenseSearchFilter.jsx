@@ -3,7 +3,7 @@ import './expenseSearchFilter.scss'
 import TransactionContext from '../../../context/transactions/TransactionContext'
 
 const ExpenseSearchFilter = () => {
-    const { transactions, filterTransactions, fetchTransactions, dispatch } = useContext(TransactionContext)
+    const { transactions, date, fetchTransactions, dispatch } = useContext(TransactionContext)
     // State for filters
     const [filters, setFilters] = useState({ min: '', max: '', name: '', type: 'all', category: '', amount: '' })
     // State for filtered items
@@ -19,18 +19,20 @@ const ExpenseSearchFilter = () => {
         }))
     }
 
-
     // console.log(transactions)
     const filterItems = () => {
         const minVal = filters.min ? parseInt(filters.min, 10) : -Infinity
         const maxVal = filters.max ? parseInt(filters.max, 10) : Infinity
 
         const newFilteredItems = transactions.filter((item) => {
+
             return item.amount >= minVal &&
                 item.amount <= maxVal &&
                 (category === '' || item.category === category) && // filter for category
                 (type === 'all' ? (item.type === 'expense' || item.type === 'income') : item.type === type) &&
-                item.name.toLowerCase().includes(name.toLowerCase())
+                item.name.toLowerCase().includes(name.toLowerCase()) &&
+                new Date(item.date).getFullYear() == date.year &&
+                (date.month === -1 || new Date(item.date).getMonth() == date.month)
         })
         dispatch({ type: 'FILTER_TRANSACTIONS', payload: newFilteredItems })
     }
@@ -39,11 +41,6 @@ const ExpenseSearchFilter = () => {
         e.preventDefault()
         filterItems()
     }
-
-    useEffect(() => {
-        fetchTransactions()
-    }, [])
-
 
 
     return (
@@ -89,13 +86,16 @@ const ExpenseSearchFilter = () => {
                     <label>Category</label>
                     <select name="category" value={category} onChange={handleFilterChange}>
                         <option value="">Select</option>
-                        <option value="meal">Meal</option>
+                        <option value="personal">Personal</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="meal">Food & Drink</option>
                         <option value="pets">Pets</option>
+                        <option value="education">Education</option>
                         <option value="utility">Utility</option>
                         <option value="recreation">Recreation</option>
                         <option value="grocery">Grocery</option>
                         <option value="vehicle">Vehicle</option>
-                        <option value="shopping">Shopping</option>
+                        <option value="gas">Gas</option>
                         <option value="other">Other</option>
                     </select>
                 </div>

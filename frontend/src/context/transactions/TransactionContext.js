@@ -8,7 +8,7 @@ export const TransactionProvider = ({ children }) => {
         transactions: [],
         filterTransactions: [],
         loading: false,
-        datee: new Date()
+        date: { year: new Date().getFullYear(), month: new Date().getMonth() }
     }
 
     const [state, dispatch] = useReducer(transactionReducer, initialState)

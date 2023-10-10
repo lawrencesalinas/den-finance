@@ -23,5 +23,21 @@
         }
     }
 
+    #dateSubmit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        top: 14px;
+        height: 19px;
+        width: 30px;
+        border: none;
+        background: none;
+        background-color: #007BBA;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
 
+
+    }
 }

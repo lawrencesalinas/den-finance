@@ -17,17 +17,20 @@ const Expense = ({ addExpenseHandler, filteredExpenses, }) => {
         setAddExpenseModal((prev => !prev))
     }
 
-    const toggleFilterModalHandler = () => {
+    const toggleFilterHandler = () => {
         setShowFilterModal((prev => !prev))
     }
 
     return (
         <div className='expense'>
-            <ExpenseHeader toggleModalHandler={toggleModalHandler} />
+            <ExpenseHeader toggleModalHandler={toggleModalHandler} toggleFilterModalHandler={toggleFilterHandler} />
             {showAddExpenseModal && (
                 <NewExpense addExpenseHandler={addExpenseHandler} />
             )}
-            <ExpenseSearchFilter />
+            {showFilterModal && (
+                <ExpenseSearchFilter />
+            )}
+
             <div className="header-row">
                 <p>Date</p>
                 <p>Name</p>
