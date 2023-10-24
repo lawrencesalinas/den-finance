@@ -1,90 +1,54 @@
-import React from "react"
-import '../charts.scss'
-import {
-    ComposedChart,
-    Line,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer
-} from "recharts"
+import React, { useContext } from 'react'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts'
+import TransactionContext from '../../../context/transactions/TransactionContext'
+
+export default function VerticalBarCharts({ data }) {
+
+    const { getMonthAbbreviation, CustomTooltip } = useContext(TransactionContext)
+
+    const aggregateDataByMonth = (data) => {
+        const aggregatedData = {}
 
 
-function getRandomColor() {
-    const letters = '0123456789ABCDEF'
-    let color = '#'
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)]
-    }
-    return color
-}
+        const expenseData = data.filter(data => {
+            return data.type === 'expense'
+        })
+        expenseData.forEach(record => {
+            const dateObj = new Date(record.date)
+            const month = dateObj.getMonth()
+            const key = `${getMonthAbbreviation(month)}`
 
-const combineByCategory = (data) => {
-    return data.reduce((acc, curr) => {
-        if (acc[curr.category]) {
-            acc[curr.category] += curr.amount
-        } else {
-            acc[curr.category] = curr.amount
-        }
-        return acc
-    }, {})
-}
+            if (aggregatedData[key]) {
+                aggregatedData[key] += record.amount
+            } else {
+                aggregatedData[key] = record.amount
+            }
+        })
 
+        const sortedData = Object.entries(aggregatedData).map(([month, amount]) => ({ month, amount })).sort((a, b) => new Date(a.month) - new Date(b.month))
 
-export default function VerticalCharts({ data }) {
-
-
-    const uniqueCategories = [...new Set(data.map(item => item.category))]
-
-
-    const processedData = Object.entries(combineByCategory(data)).map(([category, amount]) => ({
-        category,
-        amount,
-    }))
-    const IntegerTickFormatter = (tick) => {
-        return `$${Math.round(tick)}`
+        // 2. Filter out the last three months
+        return sortedData.slice(-3)
     }
 
-    const categories = [
-        { category: 'Meal' },
-        { category: 'Shoppimg' },
-        { category: 'Recreation' },
-        { category: 'Utility' },
-        { category: 'Grocery' },
-        { category: 'Vehicle' },
-        { category: 'Other' },
-    ]
+    const aggregatedData = aggregateDataByMonth(data)
+
     return (
-        <ResponsiveContainer
-            width='100%'
-            height={400}
-        >
-            <ComposedChart
-                className="verticalChart"
+        <ResponsiveContainer width='100%' height={200}>
+            <BarChart
                 layout="vertical"
-                data={processedData}
-                margin={{
-                    top: 100,
-                    right: 20,
-                    bottom: 20,
-                    left: 20
-                }}
+                data={aggregatedData}
+                margin={{ top: 5, right: 30, left: 20, bottom: 20 }}
             >
-                <CartesianGrid stroke="#f5f5f5" />
-                <XAxis dataKey="amount" type="number" tickFormatter={IntegerTickFormatter} domain={[0, 'dataMax + 1']} />
-                <YAxis type="category" dataKey="name" />
-                <Tooltip />
+                <XAxis type="number" tick={{ fontSize: 10 }} tickFormatter={(tick) => `$${tick}`} />
+                <YAxis dataKey="month" type="category" interval={0} tick={{ fontSize: 10 }}
+                />
+                <CartesianGrid strokeDasharray="3 3" />
+                <Tooltip content={<CustomTooltip />} />
                 <Legend />
-                {uniqueCategories.map((category, index) => (
-                    <Bar key={category} dataKey="category" fill={getRandomColor()} name={category} />
-                    // <Bar dataKey="category" barSize={20} fill="#413ea0" />
-                ))}
-                {/* <Bar dataKey="category" barSize={20} fill="#413ea0" />
-                <Bar dataKey="amount" barSize={20} fill="#413ea0" /> */}
-            </ComposedChart >
+                <Bar dataKey="amount" fill="#8884d8" />
+            </BarChart>
         </ResponsiveContainer>
+
     )
 }

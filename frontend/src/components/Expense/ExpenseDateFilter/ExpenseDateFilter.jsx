@@ -2,9 +2,11 @@ import React, { useContext, useState } from 'react'
 import './expenseDateFilter.scss'
 import TransactionContext from '../../../context/transactions/TransactionContext'
 import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded'
-const ExpenseDateFilter = ({ monthChangeFilter, yearChangeFilter, selectedYear, selectedMonth }) => {
+const ExpenseDateFilter = () => {
 
-    const { transactions, date, dispatch } = useContext(TransactionContext)
+    const { transactions, date, dispatch, getMonthAbbreviation } = useContext(TransactionContext)
+
+    const [displayDate, setDisplayDate] = useState(`${getMonthAbbreviation(date.month)} ${date.year}`)
 
     const yearDropDownChangeHandler = (e) => {
         const newYear = { ...date, year: e.target.value }
@@ -21,6 +23,8 @@ const ExpenseDateFilter = ({ monthChangeFilter, yearChangeFilter, selectedYear, 
             return new Date(item.date).getFullYear() == date.year &&
                 (date.month === -1 || new Date(item.date).getMonth() == date.month)
         })
+
+        setDisplayDate(`${getMonthAbbreviation(date.month)} ${date.year}`)
         dispatch({ type: 'FILTER_TRANSACTIONS', payload: newFilteredItems })
     }
 
@@ -50,7 +54,8 @@ const ExpenseDateFilter = ({ monthChangeFilter, yearChangeFilter, selectedYear, 
                     ))}
                 </select>
             </div>
-            <button id='dateSubmit' fontSize='medium' onClick={filterDateHandler}><span><ArrowRightAltRoundedIcon /></span></button>
+            <button id='dateSubmit' onClick={filterDateHandler}><span><ArrowRightAltRoundedIcon /></span></button>
+            <h2>{displayDate}</h2>
         </div>
     )
 }

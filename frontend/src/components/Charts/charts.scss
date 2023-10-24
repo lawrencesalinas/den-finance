@@ -23,5 +23,32 @@
 
     .chart {
         width: 90%;
+
+        .expenses {
+            border-radius: 4px;
+            width: 200px;
+            background-color: #edf5ef;
+            margin-bottom: 25px;
+            margin-left: 70px;
+            padding: 10px;
+            box-shadow: 5px 5px 5px 0px lightgray;
+
+            h3 {
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+
+        .expenses.red {
+            color: #FF8042;
+        }
+
+        .expenses.green {
+            color: #00C49F;
+
+        }
     }
 }

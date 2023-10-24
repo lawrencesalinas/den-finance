@@ -1,55 +1,63 @@
-import { BarChart, Bar, ResponsiveContainer, YAxis, Legend, XAxis, CartesianGrid, Tooltip } from "recharts"
+import React, { useContext } from 'react'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import TransactionContext from '../../../context/transactions/TransactionContext'
 
-const aggregateDataByMonth = (data) => {
+export default function BarCharts({ filterType }) {
 
-    const months = [
-        { name: 'Jan', amount: 0 },
-        { name: 'Feb', amount: 0 },
-        { name: 'Mar', amount: 0 },
-        { name: 'Apr', amount: 0 },
-        { name: 'May', amount: 0 },
-        { name: 'Jun', amount: 0 },
-        { name: 'Jul', amount: 0 },
-        { name: 'Aug', amount: 0 },
-        { name: 'Sep', amount: 0 },
-        { name: 'Oct', amount: 0 },
-        { name: 'Nov', amount: 0 },
-        { name: 'Dec', amount: 0 },
-    ]
+    const { filterTransactions, date, getMonthAbbreviation, CustomTooltip } = useContext(TransactionContext)
 
-    data.forEach(item => {
-        const monthIndex = item.date.getMonth() // getMonth returns month index from 0 to 11
-        months[monthIndex].amount += item.amount
-    })
-    return months
-}
+    const aggregateData = (data) => {
 
-export default function BarCharts({ data }) {
+        const expenseData = data.filter(data => {
+            return data.type === 'expense'
+        })
 
-    const aggregateData = aggregateDataByMonth(data)
+        const aggregatedData = {}
+
+        expenseData.forEach(record => {
+            let key = record.date
+
+            if (date.month === -1) {
+                const dateObj = new Date(record.date)
+                const month = getMonthAbbreviation(dateObj.getMonth())  // Months are 0-indexed
+                key = `${month}`
+            } else {
+                const dateObj = new Date(record.date)
+                const date = dateObj.getDate()
+                key = `${date}`
+            }
+
+            if (aggregatedData[key]) {
+                aggregatedData[key] += record.amount
+            } else {
+                aggregatedData[key] = record.amount
+            }
+        })
+
+        return Object.entries(aggregatedData).map(([date, amount]) => ({ date, amount }))
+    }
+
+    const aggregatedData = aggregateData(filterTransactions, filterType)
+
+    // Step 2: Sort aggregated data by date or month
+    aggregatedData.sort((a, b) => new Date(a.date) - new Date(b.date))
+
+
 
     return (
-        <ResponsiveContainer
-            width='100%'
-            height={400}
-        >
-            <BarChart
-                className="barChart"
-                data={aggregateData}
-            >
-                <YAxis tickFormatter={(tick) => `$${tick}`} />
+        <ResponsiveContainer width='100%' height={400}>
+            <BarChart className="barChart" data={aggregatedData}>
+                <YAxis
+                    tick={{ fontSize: 10 }}
+                    tickFormatter={(tick) => `$${tick}`} />
                 <XAxis
-                    dataKey='name'
-                    interval={0}
-                />
+                    tick={{ fontSize: 10 }}
+                    dataKey='date' interval={0} />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Tooltip />
+                <Tooltip content={<CustomTooltip />} />
                 <Legend />
-                <Bar
-                    dataKey='amount' fill="#8884d8"
-                />
-
-            </BarChart >
-        </ResponsiveContainer >
+                <Bar dataKey='amount' fill="#8884d8" />
+            </BarChart>
+        </ResponsiveContainer>
     )
 }

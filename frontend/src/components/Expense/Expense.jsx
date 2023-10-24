@@ -21,6 +21,8 @@ const Expense = ({ addExpenseHandler, filteredExpenses, }) => {
         setShowFilterModal((prev => !prev))
     }
 
+
+
     return (
         <div className='expense'>
             <ExpenseHeader toggleModalHandler={toggleModalHandler} toggleFilterModalHandler={toggleFilterHandler} />
@@ -28,7 +30,7 @@ const Expense = ({ addExpenseHandler, filteredExpenses, }) => {
                 <NewExpense addExpenseHandler={addExpenseHandler} />
             )}
             {showFilterModal && (
-                <ExpenseSearchFilter />
+                <ExpenseSearchFilter toggleFilterModal={setShowFilterModal} />
             )}
 
             <div className="header-row">
@@ -37,7 +39,7 @@ const Expense = ({ addExpenseHandler, filteredExpenses, }) => {
                 <p>Amount</p>
                 <p>Category</p>
             </div>
-            <ExpensesList filteredExpenses={filterTransactions} />
+            <ExpensesList />
 
         </div>
     )

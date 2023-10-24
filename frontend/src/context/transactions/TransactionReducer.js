@@ -12,6 +12,11 @@ const transactionReducer = (state, action) => {
                 ...state,
                 filterTransactions: action.payload
             }
+        case 'ADD_TRANSACTION':
+            return {
+                ...state,
+                transactions: [...state.transactions, action.payload],
+            }
         case 'SET_LOADING':
             return {
                 ...state,

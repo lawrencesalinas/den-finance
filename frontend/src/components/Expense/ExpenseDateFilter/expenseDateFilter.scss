@@ -29,15 +29,37 @@
         justify-content: center;
         position: relative;
         top: 14px;
+        right: 6px;
         height: 19px;
-        width: 30px;
+        width: 23px;
         border: none;
         background: none;
-        background-color: #007BBA;
+        background-color: #85bb65;
         color: white;
         border-radius: 4px;
         cursor: pointer;
 
-
+        span {
+            position: relative;
+            top: 2px;
+        }
     }
+
+    h2 {
+        position: absolute;
+        right: 24px;
+        top: 75px;
+        color: rgb(225, 79, 79);
+    }
+
+    @media (min-width:778px) {
+        h2 {
+            position: absolute;
+            right: 150px;
+            top: 28px;
+        }
+    }
+
+
+
 }

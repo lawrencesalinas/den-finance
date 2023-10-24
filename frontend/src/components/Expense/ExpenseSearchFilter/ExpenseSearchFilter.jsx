@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import './expenseSearchFilter.scss'
 import TransactionContext from '../../../context/transactions/TransactionContext'
 
-const ExpenseSearchFilter = () => {
+const ExpenseSearchFilter = ({ toggleFilterModal }) => {
     const { transactions, date, fetchTransactions, dispatch } = useContext(TransactionContext)
     // State for filters
     const [filters, setFilters] = useState({ min: '', max: '', name: '', type: 'all', category: '', amount: '' })
@@ -19,7 +19,6 @@ const ExpenseSearchFilter = () => {
         }))
     }
 
-    // console.log(transactions)
     const filterItems = () => {
         const minVal = filters.min ? parseInt(filters.min, 10) : -Infinity
         const maxVal = filters.max ? parseInt(filters.max, 10) : Infinity
@@ -99,7 +98,7 @@ const ExpenseSearchFilter = () => {
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <button id='cancel'>Cancel</button>
+                <button id='cancel' onClick={() => toggleFilterModal(prev => !prev)}>Cancel</button>
                 <button id='submit' type='submit'>Search</button>
             </form>
         </main>
