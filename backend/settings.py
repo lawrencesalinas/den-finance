@@ -137,6 +137,11 @@ STATICFILES_DIRS = [
 
 STATIC_URL = "static/"
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images') 
+
+# this is where django looks for static files in django when in  production
+STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles' )
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Default primary key field type
