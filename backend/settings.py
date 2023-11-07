@@ -17,8 +17,8 @@ from dotenv import load_dotenv
 load_dotenv()  # Take environment variables from .env file
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -138,6 +138,15 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 ]
 
+
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images') 
+
+# this is where django looks for static files in django when in  production
+STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles/' )
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATICFILES_DIRS = [
@@ -145,12 +154,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/build/'),
 ]
 
-STATIC_URL = "/staticfiles/"
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images') 
-
-# this is where django looks for static files in django when in  production
-STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles/' )
 
 CORS_ALLOW_ALL_ORIGINS = True
 
