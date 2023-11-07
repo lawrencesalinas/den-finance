@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get('DEBUG', "False").lower == "true"
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOST', 'localhost').split(" ")
 
@@ -142,6 +142,7 @@ STATICFILES_FINDERS = [
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '/build/'),
+    os.path.join(BASE_DIR, 'frontend/build/'),
 ]
 
 STATIC_URL = "/staticfiles/"
