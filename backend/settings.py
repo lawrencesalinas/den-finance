@@ -141,7 +141,7 @@ STATICFILES_FINDERS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/'),
+    os.path.join(BASE_DIR, '/build/'),
 ]
 
 STATIC_URL = "/staticfiles/"
@@ -149,7 +149,7 @@ STATIC_URL = "/staticfiles/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images') 
 
 # this is where django looks for static files in django when in  production
-STATIC_ROOT =  os.path.join(BASE_DIR, '/staticfiles/' )
+STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles/' )
 
 CORS_ALLOW_ALL_ORIGINS = True
 
