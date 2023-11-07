@@ -68,7 +68,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-          os.path.join(BASE_DIR, 'frontend/build')  # React index.html
+          os.path.join(BASE_DIR, 'frontend/build/')  # React index.html
             ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -142,7 +142,8 @@ STATICFILES_FINDERS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'build/'),
+      os.path.join(BASE_DIR, 'static/'),
     os.path.join(BASE_DIR, 'frontend/build/static'),
 ]
 
