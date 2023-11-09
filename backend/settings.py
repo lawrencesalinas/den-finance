@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get('DEBUG', "False").lower == "true"
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOST', 'localhost').split(" ")
 
@@ -67,7 +67,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-          os.path.join(BASE_DIR, 'frontend/build/')  # React index.html
+          os.path.join(BASE_DIR, 'build')  # React index.html
             ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -138,20 +138,20 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 ]
 
-
-STATIC_URL = '/static/'
+print(BASE_DIR,'basse')
+STATIC_URL = 'static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images') 
 
 # this is where django looks for static files in django when in  production
-STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles/' )
+STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles' )
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '/build/'),
-    os.path.join(BASE_DIR, 'frontend/build/'),
+    os.path.join(BASE_DIR, 'build/static'),
+    os.path.join(BASE_DIR, 'frontend/build/static'),
 ]
 
 
