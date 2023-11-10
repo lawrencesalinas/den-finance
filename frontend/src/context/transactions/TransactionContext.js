@@ -1,5 +1,6 @@
 import { createContext, useReducer, } from "react"
 import transactionReducer from "./TransactionReducer"
+import apiUrl from "../../apiConfig"
 
 const TransactionContext = createContext()
 
@@ -15,8 +16,7 @@ export const TransactionProvider = ({ children }) => {
 
     const fetchTransactions = async () => {
         try {
-            const response = await fetch(`/api/expenses/`)
-
+            const response = await fetch(`${apiUrl}/api/expenses/`)
             if (!response.ok) {
                 throw new Error('Network response was not ok')
             }

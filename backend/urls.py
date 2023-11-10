@@ -24,7 +24,7 @@ from django.urls import path, re_path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-  re_path('.*', TemplateView.as_view(template_name='index.html')),  # React app
+    path('',TemplateView.as_view(template_name='index.html')),
     path('api/', include('base.urls')),
 ]
 
