@@ -2,13 +2,11 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .expenses import expenses
-from .models import Transaction
-from .serializers import TransactionSerializer
+from base.expenses import expenses
+from base.models import Transaction
+from base.serializers import TransactionSerializer
 
 # Create your views here.
-
-
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
@@ -18,6 +16,7 @@ def getRoutes(request):
         '/api/income/add/',
     ]
     return Response(routes)
+
 
 
 @api_view(['GET'])

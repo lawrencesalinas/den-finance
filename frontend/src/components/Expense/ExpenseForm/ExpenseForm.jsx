@@ -2,42 +2,70 @@ import React, { useContext, useState } from 'react'
 import './expenseForm.scss'
 import TransactionContext from '../../../context/transactions/TransactionContext'
 
+
+const formatDate = (date) => {
+    return new Intl.DateTimeFormat('en-CA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).format(date)
+}
+
+
 const ExpenseForm = () => {
     const { createTransaction, dispatch } = useContext(TransactionContext)
 
     const [name, setName] = useState('')
-    const [date, setDate] = useState(new Date())
-    const [amount, setAmount] = useState('0')
+    const [date, setDate] = useState(formatDate(new Date(), 'yyyy-MM-dd'))
+    const [amount, setAmount] = useState('')
     const [category, setCategory] = useState('meal')
     const [type, setType] = useState('expense')
+    const [message, setMessage] = useState('')
+    const [btnDisabled, setBtnDisabled] = useState(true)
 
 
     const nameChangeHandler = (e) => {
         const value = e.target.value
+        if (value === '') {
+            setMessage(null)
+            setBtnDisabled(true)
+        } else if (value.trim().length < 3) {
+            setMessage('Name must be at least 4 characters')
+            setBtnDisabled(true)
+        } else {
+            setMessage(null)
+            setBtnDisabled(true)
+        }
         setName(value)
     }
 
     const dateChnageHandler = (e) => {
         const value = e.target.value
-        setDate(value)
+        setDate(value) // value is already in 'YYYY-MM-DD' format
     }
     const amountChangeHandler = (e) => {
-        const value = e.target.value
+        const value = e.target.value6iujk
+        if (value === '') {
+            setMessage('Please enter an amount')
+        } else {
+            setMessage(null)
+        }
         setAmount(value)
     }
 
     const submitHandler = (e) => {
         e.preventDefault()
 
-        const expenseData = {
-            name: name,
-            amount: amount,
-            date: new Date(date),
-            category: category,
-            type: type
+        if (name.trim().length >= 4) {
+            const expenseData = {
+                name: name,
+                amount: amount,
+                date: new Date(date),
+                category: category,
+                type: type
+            }
+            createTransaction(expenseData)
         }
-
-        createTransaction(expenseData)
 
         setName('')
         setAmount('')
@@ -59,7 +87,7 @@ const ExpenseForm = () => {
                 </div>
                 <div className="expenseForm-control">
                     <label>Amount</label>
-                    <input type='text' onChange={amountChangeHandler} value={amount} />
+                    <input type='number' onChange={amountChangeHandler} value={amount} />
                 </div>
                 <div className="expenseForm-control">
                     <label>Category</label>
@@ -88,11 +116,10 @@ const ExpenseForm = () => {
                     </select>
                 </div>
                 <div className="expenseForm-actions">
-                    <button type='submit'>Add</button>
+                    <button type='submit' disabled={btnDisabled}>Add</button>
                 </div>
             </div>
-
-
+            {message && <div className='message'>{message}</div>}
         </form >
     )
 }

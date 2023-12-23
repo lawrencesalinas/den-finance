@@ -40,7 +40,9 @@ const Expense = ({ addExpenseHandler, filteredExpenses, }) => {
                 <p>Category</p>
             </div>
             <ExpensesList />
-
+            <div className="modal">
+                <p>Item added!</p>
+            </div>
         </div>
     )
 }

@@ -21,12 +21,14 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.urls import path, re_path, include
 
-
+5
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('',TemplateView.as_view(template_name='index.html')),
-    path('api/', include('base.urls')),
+    path('api/expenses/', include('base.urls.expenses_urls')),
+    path('api/users/', include('base.urls.user_urls')),
+    # path('api/orders/', include('base.urls.order_urls')),
 ]
-
+# setting the url, telling which folder to look into
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

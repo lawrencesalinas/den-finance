@@ -9,6 +9,7 @@ import './app.scss'
 import Navbar from "./components/Navbar/Navbar"
 import DashBoard from "./pages/Dashboard/Dashboard"
 import { TransactionProvider } from "./context/transactions/TransactionContext"
+import Sidebar from "./components/Sidebar/Sidebar.jsx"
 
 
 
@@ -16,8 +17,9 @@ function App() {
 
   const Layout = () => {
     return (
-      <div>
+      <div className="app">
         {/* <Navbar /> */}
+        <Sidebar />
         <Outlet />
       </div>
     )
@@ -31,6 +33,10 @@ function App() {
       children: [
         {
           path: '/',
+          element: <Home />
+        },
+        {
+          path: '/dashboard',
           element: <DashBoard />
         },
       ]
