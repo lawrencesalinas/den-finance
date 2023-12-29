@@ -13,6 +13,7 @@
     form {
         .expense-search-form-group {
             display: flex;
+            flex-direction: column;
             margin-bottom: 10px;
 
             .amount-form-group {
@@ -22,11 +23,17 @@
 
             label {
                 color: #000000a2;
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
+                // display: flex;
+                // align-items: center;
+                // justify-content: flex-end;
                 width: 70px;
                 margin-right: 10px;
+                margin-bottom: 5px;
+            }
+
+            .to {
+                position: relative;
+                left: 13px;
             }
 
             input {
@@ -82,6 +89,32 @@
             border: solid 1px #007BBA;
         }
     }
+}
+
+@media (min-width:798px) {
+    .expenseSearchFilter {
+        form {
+            .expense-search-form-group {
 
 
+                .amount-form-group {}
+
+                label {}
+
+                .to {}
+
+                input {
+                    width: 300px;
+                }
+
+                input::placeholder {
+                    font-size: 12px;
+                }
+            }
+
+            select {
+                width: 300px;
+            }
+        }
+    }
 }

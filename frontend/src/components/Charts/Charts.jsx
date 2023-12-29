@@ -26,6 +26,8 @@ const Charts = () => {
             </div>
             <div className="chart">
                 <VerticalCharts data={transactions} />
+            </div>
+            <div className="total-expenses-tag">
                 <div className='expenses red'>
                     <h3>Total Expenses </h3>
                     <h2>$-{totalExpenses}</h2>
@@ -35,6 +37,7 @@ const Charts = () => {
                     <h2>${totalAmount}</h2>
                 </div>
             </div>
+
         </ div>
     )
 }

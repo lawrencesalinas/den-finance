@@ -14,7 +14,7 @@ function Sidebar() {
             </div> */}
 
             <Link to='/dashboard'><HomeIcon /> <span>Dashboard</span> </Link>
-            <Link to='/'><FormatListBulletedIcon /> <span>Transactions</span></Link>
+            <Link to='/register'><FormatListBulletedIcon /> <span>Transactions</span></Link>
             <Link to='/'><PaidIcon /><span>Income</span> </Link>
             <Link to='/'><PriceChangeIcon /><span>Expenses</span></Link>
         </div>

@@ -1,4 +1,4 @@
-import "./login.scss"
+import "./register.scss"
 import { useEffect, useState } from 'react'
 // import { toast } from 'react-toastify'
 // import { useSelector, useDispatch } from 'react-redux'

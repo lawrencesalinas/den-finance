@@ -37,6 +37,11 @@ const ExpenseForm = () => {
             setBtnDisabled(true)
         }
         setName(value)
+        if (name !== '' && amount !== '') {
+            setBtnDisabled(false)
+        } else {
+            setBtnDisabled(true)
+        }
     }
 
     const dateChnageHandler = (e) => {
@@ -44,13 +49,19 @@ const ExpenseForm = () => {
         setDate(value) // value is already in 'YYYY-MM-DD' format
     }
     const amountChangeHandler = (e) => {
-        const value = e.target.value6iujk
+        const value = e.target.value
         if (value === '') {
             setMessage('Please enter an amount')
+            setBtnDisabled(true)
         } else {
             setMessage(null)
         }
         setAmount(value)
+        if (name !== '' && amount !== '') {
+            setBtnDisabled(false)
+        } else if (name === '' || amount === '') {
+            setBtnDisabled(true)
+        }
     }
 
     const submitHandler = (e) => {

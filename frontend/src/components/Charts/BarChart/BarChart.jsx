@@ -46,7 +46,7 @@ export default function BarCharts({ filterType }) {
 
     return (
         <ResponsiveContainer width='100%' height={400}>
-            <BarChart className="barChart" data={aggregatedData}>
+            <BarChart className="barChart" data={aggregatedData} margin={{ top: 20, right: 20, left: 0 }}>
                 <YAxis
                     tick={{ fontSize: 10 }}
                     tickFormatter={(tick) => `$${tick}`} />

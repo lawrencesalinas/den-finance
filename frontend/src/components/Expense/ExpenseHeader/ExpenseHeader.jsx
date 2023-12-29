@@ -15,7 +15,7 @@ const ExpenseHeader = ({ toggleModalHandler, toggleFilterModalHandler }) => {
             <div className="header">
                 <h2>Transactions</h2>
                 <div className="icons">
-                    <div className="icon" onClick={toggleFilterModalHandler}><span>Search </span><SearchIcon /></div>
+                    <div className="icon search" onClick={toggleFilterModalHandler}><span>Search </span><SearchIcon /></div>
                     <div className="icon" onClick={toggleModalHandler}> <AddIcon /></div>
                     <div className="icon"><CreateIcon /></div>
                     <div className="icon"><DeleteOutlineIcon /></div>

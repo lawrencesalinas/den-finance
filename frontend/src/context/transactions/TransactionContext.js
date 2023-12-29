@@ -17,6 +17,7 @@ export const TransactionProvider = ({ children }) => {
     const fetchTransactions = async () => {
         try {
             const response = await fetch(`${apiUrl}/api/expenses/`)
+
             if (!response.ok) {
                 throw new Error('Network response was not ok')
             }

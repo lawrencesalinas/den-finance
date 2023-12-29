@@ -38,7 +38,7 @@ export default function VerticalBarCharts({ data }) {
             <BarChart
                 layout="vertical"
                 data={aggregatedData}
-                margin={{ top: 5, right: 30, left: 20, bottom: 20 }}
+                margin={{ top: 5, right: 30, left: 0, bottom: 20 }}
             >
                 <XAxis type="number" tick={{ fontSize: 10 }} tickFormatter={(tick) => `$${tick}`} />
                 <YAxis dataKey="month" type="category" interval={0} tick={{ fontSize: 10 }}

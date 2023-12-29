@@ -6,10 +6,13 @@ import {
   Outlet
 } from "react-router-dom"
 import './app.scss'
-import Navbar from "./components/Navbar/Navbar"
+import Header from "./components/Header/Header"
 import DashBoard from "./pages/Dashboard/Dashboard"
 import { TransactionProvider } from "./context/transactions/TransactionContext"
+import { AuthProvider } from "./context/auth/AuthContext.js"
 import Sidebar from "./components/Sidebar/Sidebar.jsx"
+import Login from "./pages/Login/Login.jsx"
+import Register from "./pages/Register/Register.jsx"
 
 
 
@@ -18,9 +21,10 @@ function App() {
   const Layout = () => {
     return (
       <div className="app">
-        {/* <Navbar /> */}
-        <Sidebar />
+        <Header />
+        {/* <Sidebar /> */}
         <Outlet />
+        {/* <Sidebar /> */}
       </div>
     )
   }
@@ -39,16 +43,26 @@ function App() {
           path: '/dashboard',
           element: <DashBoard />
         },
+        {
+          path: '/login',
+          element: <Login />
+        },
+        {
+          path: '/register',
+          element: <Register />
+        },
       ]
     },
   ])
 
   return (
-    <TransactionProvider>
-      <div className="app">
-        <RouterProvider router={router} />
-      </div>
-    </TransactionProvider>
+    <AuthProvider>
+      <TransactionProvider>
+        <div className="app">
+          <RouterProvider router={router} />
+        </div>
+      </TransactionProvider>
+    </AuthProvider>
   )
 }
 

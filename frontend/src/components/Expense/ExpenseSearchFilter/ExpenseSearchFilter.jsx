@@ -71,8 +71,9 @@ const ExpenseSearchFilter = ({ toggleFilterModal }) => {
                             />
                         </div>
                         <div className="amount-form-group">
-                            <label>to:</label>
+                            <label >To:</label>
                             <input
+                                className='to'
                                 type="number"
                                 name="max"
                                 value={max}
