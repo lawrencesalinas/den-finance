@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import './expenseHeader.scss'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AddIcon from '@mui/icons-material/Add'
-import CreateIcon from '@mui/icons-material/Create'
+
 import SearchIcon from '@mui/icons-material/Search'
+import apiUrl from '../../../apiConfig'
 
 
 const ExpenseHeader = ({ toggleModalHandler, toggleFilterModalHandler }) => {
-    const addExpenseHandler = () => {
-    }
+
 
     return (
         <div className='expenseHeader' >
@@ -17,8 +17,7 @@ const ExpenseHeader = ({ toggleModalHandler, toggleFilterModalHandler }) => {
                 <div className="icons">
                     <div className="icon search" onClick={toggleFilterModalHandler}><span>Search </span><SearchIcon /></div>
                     <div className="icon" onClick={toggleModalHandler}> <AddIcon /></div>
-                    <div className="icon"><CreateIcon /></div>
-                    <div className="icon"><DeleteOutlineIcon /></div>
+
                 </div>
             </div>
         </div>

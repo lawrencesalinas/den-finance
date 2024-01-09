@@ -8,16 +8,16 @@ export default function BarCharts({ filterType }) {
 
     const aggregateData = (data) => {
 
-        const expenseData = data.filter(data => {
+        const expenseData = data?.filter(data => {
             return data.type === 'expense'
         })
 
         const aggregatedData = {}
 
-        expenseData.forEach(record => {
+        expenseData?.forEach(record => {
             let key = record.date
 
-            if (date.month === -1) {
+            if (date?.month === -1) {
                 const dateObj = new Date(record.date)
                 const month = getMonthAbbreviation(dateObj.getMonth())  // Months are 0-indexed
                 key = `${month}`

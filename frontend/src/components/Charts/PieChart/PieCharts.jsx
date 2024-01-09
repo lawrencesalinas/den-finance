@@ -37,11 +37,11 @@ export default function PieCharts() {
     const aggregateData = (transactions) => {
         const aggregatedData = {}
 
-        const expenseData = transactions.filter(data => {
+        const expenseData = transactions?.filter(data => {
             return data.type === 'expense'
         })
 
-        expenseData.forEach((transaction) => {
+        expenseData?.forEach((transaction) => {
             let key = transaction.category
 
             if (aggregatedData[key]) {
@@ -75,7 +75,7 @@ export default function PieCharts() {
                     dataKey="amount"
                     nameKey="category"
                 >
-                    {aggregatedData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
+                    {aggregatedData?.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
                 </Pie>
                 <Tooltip content={<CustomTooltip />} />
                 <Legend />

@@ -22,7 +22,6 @@ function Register() {
     const { name, email, password, confirmPassword } = formData
     const { signup, error, isLoading } = useSignup()
 
-    // const dispatch = useDispatch()
     const navigate = useNavigate()
 
 
@@ -51,7 +50,6 @@ function Register() {
     }
 
     const onSubmit = async (e) => {
-        console.log('hello')
         e.preventDefault()
 
 
@@ -60,7 +58,7 @@ function Register() {
         } else {
             await signup(name, email, password)
         }
-        navigate('/')
+        navigate('/dashboard')
     }
 
     // if (isLoading) {
@@ -69,9 +67,6 @@ function Register() {
 
     return (
         <>
-            <div data-aos='fade-in'>
-                {/* <Header linkcolor='#fff' bgcolor='#181818' /> */}
-            </div>
             <div className="Register" data-aos='fade-in' >
                 <h1>Create Account</h1>
                 <form className="form" onSubmit={onSubmit}>

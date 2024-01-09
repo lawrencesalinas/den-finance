@@ -19,7 +19,7 @@ from rest_framework import status
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
-    
+        print(data,'dsata')
         serializer = UserSerializerWithToken(self.user).data
         for k, v in serializer.items():
             data[k] = v
@@ -29,8 +29,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
+
 @api_view(['POST'])
 def registerUser(request):
+    print(request,' request')
     data = request.data
     print(data,'this is data')
     try:

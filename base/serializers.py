@@ -4,11 +4,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Transaction
 
 
-class TransactionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Transaction
-        fields = '__all__'
-
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(read_only=True)
     isAdmin = serializers.SerializerMethodField(read_only=True)
@@ -35,4 +30,12 @@ class UserSerializerWithToken(UserSerializer):
 
     def get_token(self, obj):
         token = RefreshToken.for_user(obj)
-        return str(token)
+        return str(token.access_token)
+    
+    
+class TransactionSerializer(serializers.ModelSerializer):
+    user = UserSerializerWithToken()
+    class Meta:
+        model = Transaction
+        fields = '__all__'
+

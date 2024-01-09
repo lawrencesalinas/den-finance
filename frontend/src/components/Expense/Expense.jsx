@@ -33,16 +33,19 @@ const Expense = ({ addExpenseHandler, filteredExpenses, }) => {
                 <ExpenseSearchFilter toggleFilterModal={setShowFilterModal} />
             )}
 
-            <div className="header-row">
-                <p>Date</p>
-                <p>Name</p>
-                <p>Amount</p>
-                <p>Category</p>
-            </div>
-            <ExpensesList />
-            <div className="modal">
-                <p>Item added!</p>
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <ExpensesList />
+            </table>
         </div>
     )
 }

@@ -6,7 +6,7 @@ const ExpenseDateFilter = () => {
 
     const { transactions, date, dispatch, getMonthAbbreviation } = useContext(TransactionContext)
 
-    const [displayDate, setDisplayDate] = useState(`${getMonthAbbreviation(date.month)} ${date.year}`)
+    const [displayDate, setDisplayDate] = useState(`${getMonthAbbreviation(date?.month)} ${date?.year}`)
 
     const yearDropDownChangeHandler = (e) => {
         const newYear = { ...date, year: e.target.value }
@@ -35,7 +35,7 @@ const ExpenseDateFilter = () => {
         <div className="expense-filter">
             <div className="expense-filter__control">
                 <label>Year</label>
-                <select value={date.year} onChange={yearDropDownChangeHandler}>
+                <select value={date?.year} onChange={yearDropDownChangeHandler}>
                     {years.map((year, index) => (
                         <option key={index} value={year}>
                             {year}
@@ -45,7 +45,7 @@ const ExpenseDateFilter = () => {
             </div>
             <div className="expense-filter__control">
                 <label>Month</label>
-                <select value={date.month} onChange={monthDropDownChangeHandler}>
+                <select value={date?.month} onChange={monthDropDownChangeHandler}>
                     <option value="-1">All months</option>
                     {months.map((month, index) => (
                         <option key={index} value={index}>

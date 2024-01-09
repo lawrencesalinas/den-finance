@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import './expenseForm.scss'
 import TransactionContext from '../../../context/transactions/TransactionContext'
+import { useAuthContext } from '../../../hooks/useAuthContext'
 
 
 const formatDate = (date) => {
@@ -13,6 +14,7 @@ const formatDate = (date) => {
 
 
 const ExpenseForm = () => {
+    const { user } = useAuthContext()
     const { createTransaction, dispatch } = useContext(TransactionContext)
 
     const [name, setName] = useState('')
@@ -75,7 +77,7 @@ const ExpenseForm = () => {
                 category: category,
                 type: type
             }
-            createTransaction(expenseData)
+            createTransaction(expenseData, user)
         }
 
         setName('')

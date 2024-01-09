@@ -3,20 +3,25 @@ import './dashBoard.scss'
 import { useContext, useEffect, useState } from 'react'
 import ExpenseDateFilter from '../../components/Expense/ExpenseDateFilter/ExpenseDateFilter'
 import Charts from '../../components/Charts/Charts'
-import TransactionContext from '../../context/transactions/TransactionContext'
 import Sidebar from '../../components/Sidebar/Sidebar'
+import { useTransactionsContext } from '../../hooks/useTransactionContext'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 
 const DashBoard = () => {
 
-    const { fetchTransactions, dispatch } = useContext(TransactionContext)
+    const { fetchTransactions, dispatch } = useTransactionsContext()
+    const { user } = useAuthContext()
 
     useEffect(() => {
         const loadTransactions = async () => {
-            await fetchTransactions()
+            await fetchTransactions(user)
         }
-        loadTransactions()
-    }, [])
+
+        if (user) {
+            loadTransactions()
+        }
+    }, [user, dispatch])
     return (
         <div className="dashboard-wrapper">
             <Sidebar />
@@ -26,7 +31,6 @@ const DashBoard = () => {
                 <Expense />
             </div>
         </div>
-
     )
 }
 

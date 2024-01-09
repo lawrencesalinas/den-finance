@@ -1,55 +1,53 @@
 .Register {
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 100vw;
     background-color: #181818;
     color: #fff;
     height: 100vh;
-}
 
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+    h1 {
+        margin: 3% 0 2% 0;
+        text-align: center;
+    }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 30px;
-    /* width: 80vw */
-    outline: none;
-}
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-.form-group label {
-    margin-bottom: 8px;
-}
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 30px;
+            /* width: 80vw */
+            outline: none;
 
-.emailInput,
-.nameInput,
-.passwordInput,
-.passwordConfirmInput {
-    width: 325px;
-    height: 40px;
-    border-radius: 30px;
-    border: none;
-    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
-    outline: none;
-    padding: 20px;
-}
+            .form-group label {
+                margin-bottom: 8px;
+            }
 
-::placeholder {
-    font-size: 15px;
-}
+            .emailInput,
+            .nameInput,
+            .passwordInput,
+            .passwordConfirmInput {
+                width: 285px;
+                height: 40px;
+                border-radius: 30px;
+                border: none;
+                box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+                outline: none;
+                padding: 20px;
+            }
 
-h1 {
-    margin: 3% 0 2% 0;
-    text-align: center;
-    margin-top: 70px;
+            ::placeholder {
+                font-size: 15px;
+            }
+        }
+    }
+
 }
 
 .signupbtns {
@@ -62,7 +60,7 @@ h1 {
 .signuphead {
     display: flex;
     margin-top: 40px;
-    width: 325px;
+    width: 285px;
 }
 
 .signuphead p {
@@ -109,7 +107,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 323px;
+    width: 285px;
     height: 40px;
     font-size: 1.1em;
     border-radius: 30px;

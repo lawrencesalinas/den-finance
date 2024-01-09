@@ -1,4 +1,3 @@
-import Expense from "./components/Expense/Expense"
 import Home from "./pages/Home/Home"
 import {
   createBrowserRouter,
@@ -13,6 +12,7 @@ import { AuthProvider } from "./context/auth/AuthContext.js"
 import Sidebar from "./components/Sidebar/Sidebar.jsx"
 import Login from "./pages/Login/Login.jsx"
 import Register from "./pages/Register/Register.jsx"
+import Expenses from "./pages/Expenses/Expenses.jsx"
 
 
 
@@ -51,6 +51,15 @@ function App() {
           path: '/register',
           element: <Register />
         },
+        {
+          path: '/expenses',
+          element: <Expenses />
+        },
+        {
+          path: '/register',
+          element: <Register />
+        },
+
       ]
     },
   ])

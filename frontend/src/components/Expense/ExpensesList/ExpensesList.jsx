@@ -5,34 +5,45 @@ import TransactionContext from '../../../context/transactions/TransactionContext
 function ExpensesList() {
 
     const { transactions, filterTransactions } = useContext(TransactionContext)
-
     let expensesContent = <p>No expenses found</p>
-    if (filterTransactions.length === 0) {
-        return <p style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>We couldn't find any transactions that matched the filter criteria you chose. Please check your choices and try again.</p>
-    }
+
+    const sortedTransactions = filterTransactions?.sort((a, b) => {
+        // Compare the primary 'date' field
+        if (a.date < b.date) {
+            return 1
+        } else if (a.date > b.date) {
+            return -1
+        } else {
+            // If 'date' fields are equal, compare 'createdAt' field
+            let createdAtA = new Date(a.createdAt)
+            let createdAtB = new Date(b.createdAt)
+            return createdAtB - createdAtA  // newer 'createdAt' first
+        }
+    })
 
     return (
-        <div>
-            {filterTransactions.map((item) => {
+        <tbody>
+            {filterTransactions && filterTransactions.length > 0 && sortedTransactions.map((item) => {
                 let sign = ''
                 if (item.type === 'expense') {
                     sign = '-'
                 } else {
                     sign = '+'
                 }
-                return <ExpenseItem
-                    key={item.id}
-                    date={item.date}
-                    name={item.name}
-                    category={item.category}
-                    amount={item.amount}
-                    sign={sign}
-                />
+                return (
+
+                    <ExpenseItem
+                        key={item.id}
+                        id={item.id}
+                        date={item.date}
+                        name={item.name}
+                        category={item.category}
+                        amount={item.amount}
+                        sign={sign}
+                    />
+                )
             })}
-
-
-        </div>
-
+        </tbody>
     )
 }
 

@@ -22,24 +22,39 @@
         }
     }
 
-    li {
-        cursor: pointer;
+    .list-items {
+        display: flex;
+        gap: 40px;
 
-        .login {
-            display: flex;
-            position: relative;
-            right: 10px;
-            top: 10px;
-            text-decoration: none;
-            color: #181818;
-            border: solid 1px #181818;
-            border-radius: 50px;
+        li {
+            cursor: pointer;
 
-            .login-text {
-                display: none;
+            .user-icon {
+                display: flex;
+                position: relative;
+                right: 10px;
+                top: 10px;
+                text-decoration: none;
+                color: #181818;
+                border: solid 1px #181818;
+                border-radius: 50px;
+
+                .login-text {
+                    display: none;
+                }
+            }
+
+            .logout-text {
+                color: #181818;
+                text-decoration: none;
+                display: flex;
+                position: relative;
+                right: 24px;
+                top: 14px;
             }
         }
     }
+
 
 
 

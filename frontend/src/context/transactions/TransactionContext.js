@@ -14,15 +14,20 @@ export const TransactionProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(transactionReducer, initialState)
 
-    const fetchTransactions = async () => {
+    const fetchTransactions = async (user) => {
         try {
-            const response = await fetch(`${apiUrl}/api/expenses/`)
-
+            const response = await fetch(`${apiUrl}/api/expenses/`, {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${user.token}`
+                }
+            })
             if (!response.ok) {
                 throw new Error('Network response was not ok')
             }
 
             const data = await response.json()
+
             const convertedData = data.map(item => ({
                 ...item,
                 amount: Number(item.amount)
@@ -37,35 +42,35 @@ export const TransactionProvider = ({ children }) => {
         }
     }
 
-    const createTransaction = async (data) => {
+    const createTransaction = async (data, user) => {
         try {
             // setLoading(true)
 
-            const response = await fetch('http://localhost:8000/api/create/', {
+            const response = await fetch('http://localhost:8000/api/expenses/create/', {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
                 credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${user.token}`
                 },
                 body: JSON.stringify(data),
             })
+
+            if (response.ok) {
+                alert('Item succesfully added')
+            }
 
             if (!response.ok) {
                 throw new Error('Failed to create transaction.')
             }
 
-            const responseData = await response.json()
-            // Optional: If you want to update the state after adding a transaction, you can dispatch an action here.
-            console.log(responseData)
 
-            // dispatch({
-            //     type: 'ADD_TRANSACTION',
-            //     payload: responseData // or result.newTransaction if your API returns the new transaction
-            // })
-
-            fetchTransactions()
+            // const responseData = await response.json()
+            // // Optional: If you want to update the state after adding a transaction, you can dispatch an action here.
+            // console.log(responseData)
+            fetchTransactions(user)
 
         } catch (error) {
             console.log(error)
@@ -73,7 +78,6 @@ export const TransactionProvider = ({ children }) => {
             setLoading(false)
         }
     }
-
 
     const setLoading = () => dispatch({ tpye: 'SET_LOADING', })
 

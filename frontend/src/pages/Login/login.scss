@@ -1,125 +1,125 @@
-.Register {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100vw;
-    background-color: #181818;
-    color: #fff;
-    height: 100vh;
-}
+// .Register {
+//     margin: 0 auto;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     width: 100vw;
+//     background-color: #181818;
+//     color: #fff;
+//     height: 100vh;
+// }
 
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+// .form {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+// }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 30px;
-    /* width: 80vw */
-    outline: none;
-}
+// .form-group {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     margin-top: 30px;
+//     /* width: 80vw */
+//     outline: none;
+// }
 
-.form-group label {
-    margin-bottom: 8px;
-}
+// .form-group label {
+//     margin-bottom: 8px;
+// }
 
-.emailInput,
-.nameInput,
-.passwordInput,
-.passwordConfirmInput {
-    width: 325px;
-    height: 40px;
-    border-radius: 30px;
-    border: none;
-    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
-    outline: none;
-    padding: 20px;
-}
+// .emailInput,
+// .nameInput,
+// .passwordInput,
+// .passwordConfirmInput {
+//     width: 325px;
+//     height: 40px;
+//     border-radius: 30px;
+//     border: none;
+//     box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+//     outline: none;
+//     padding: 20px;
+// }
 
-::placeholder {
-    font-size: 15px;
-}
+// ::placeholder {
+//     font-size: 15px;
+// }
 
-h1 {
-    margin: 3% 0 2% 0;
-    text-align: center;
-    margin-top: 70px;
-}
+// h1 {
+//     margin: 3% 0 2% 0;
+//     text-align: center;
+//     margin-top: 70px;
+// }
 
-.signupbtns {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+// .signupbtns {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+// }
 
-.signuphead {
-    display: flex;
-    margin-top: 40px;
-    width: 325px;
-}
+// .signuphead {
+//     display: flex;
+//     margin-top: 40px;
+//     width: 325px;
+// }
 
-.signuphead p {
-    font-size: 2em;
-    margin-right: 30px;
-}
+// .signuphead p {
+//     font-size: 2em;
+//     margin-right: 30px;
+// }
 
-.signupbtn {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 40px;
-    border-radius: 30px;
-    background-color: #8a2be2;
-    color: #fff;
-    transition: background-color 0.5s ease;
-    border: none;
-    font-size: 1rem;
-}
+// .signupbtn {
+//     cursor: pointer;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//     height: 40px;
+//     border-radius: 30px;
+//     background-color: #8a2be2;
+//     color: #fff;
+//     transition: background-color 0.5s ease;
+//     border: none;
+//     font-size: 1rem;
+// }
 
-.signupbtn:hover {
-    /* transform: scale(1.05); */
-    background-color: #6317a9;
-}
+// .signupbtn:hover {
+//     /* transform: scale(1.05); */
+//     background-color: #6317a9;
+// }
 
-.or {
-    width: 250px;
-    text-align: center;
-    border-bottom: 1px solid #fff;
-    line-height: 0.1em;
-    margin: 10px 0 20px;
-    margin-top: 50px;
-}
+// .or {
+//     width: 250px;
+//     text-align: center;
+//     border-bottom: 1px solid #fff;
+//     line-height: 0.1em;
+//     margin: 10px 0 20px;
+//     margin-top: 50px;
+// }
 
-.or span {
-    background-color: #181818;
-    padding: 0 10px;
-}
+// .or span {
+//     background-color: #181818;
+//     padding: 0 10px;
+// }
 
-.create-act-btn {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 323px;
-    height: 40px;
-    font-size: 1.1em;
-    border-radius: 30px;
-    background-color: #000;
-    border: solid 2px #fff;
-    color: #fff;
-    transition: background-color 0.5s ease-in;
-}
+// .create-act-btn {
+//     cursor: pointer;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 323px;
+//     height: 40px;
+//     font-size: 1.1em;
+//     border-radius: 30px;
+//     background-color: #000;
+//     border: solid 2px #fff;
+//     color: #fff;
+//     transition: background-color 0.5s ease-in;
+// }
 
-.create-act-btn:hover {
-    background-color: #fff;
-    color: #000;
-}
+// .create-act-btn:hover {
+//     background-color: #fff;
+//     color: #000;
+// }

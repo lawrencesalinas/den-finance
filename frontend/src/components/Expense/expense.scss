@@ -1,28 +1,91 @@
 .expense {
-    display: flex;
-    flex-direction: column;
     color: #585555;
-    width: 100%;
+    // display: flex;
+    // flex-direction: column;
+    // color: #585555;
+    // width: 100%;
+
+    table {
+        margin: 0 auto;
+        text-align: center;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table th,
+    table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    table th {
+        font-size: 14px;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+    }
+
+    table td {
+        font-size: 12px;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+    }
+
+
+    table th:nth-last-child(-n+2),
+    table td:nth-last-child(-n+2) {
+        width: 0px;
+        padding: 2px;
+        /* Adjust the width as needed */
+    }
+
+    /* Remove the right border of the second-to-last column */
+    table th:nth-last-child(2),
+    table td:nth-last-child(2) {
+        border-right: none;
+    }
+
+    /* Remove the left border of the last column */
+    table th:last-child,
+    table td:last-child {
+        border-left: none;
+    }
 
     @media (min-width: 768px) {
-        width: 98%;
-    }
-
-    .header-row {
-        display: flex;
-        justify-content: space-around;
-        padding: 14px;
-        border-bottom: 1px solid #8888;
-        font-size: 14px;
-
-        @media (max-width: 200px) {
-            font-size: 4vw;
+        table {
+            width: 95%;
         }
 
-        p {
-            font-weight: 700;
-            width: 100px;
-            text-align: center;
+        table td {
+            font-size: 14px;
         }
     }
+
 }
+
+
+
+// width: 98%;
+
+
+
+
+// .header-row {
+//     display: flex;
+//     justify-content: space-around;
+//     padding: 14px;
+//     border-bottom: 1px solid #8888;
+//     font-size: 14px;
+
+//     @media (max-width: 200px) {
+//         font-size: 4vw;
+//     }
+
+//     p {
+//         font-weight: 700;
+//         width: 100px;
+//         text-align: center;
+//     }
+// }
+// }
