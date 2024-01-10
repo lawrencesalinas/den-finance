@@ -5,7 +5,7 @@ import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded'
 const ExpenseDateFilter = () => {
 
     const { transactions, date, dispatch, getMonthAbbreviation } = useContext(TransactionContext)
-
+    console.log(date, 'initial')
     const [displayDate, setDisplayDate] = useState(`${getMonthAbbreviation(date?.month)} ${date?.year}`)
 
     const yearDropDownChangeHandler = (e) => {

@@ -21,8 +21,6 @@ const Expense = ({ addExpenseHandler, filteredExpenses, }) => {
         setShowFilterModal((prev => !prev))
     }
 
-
-
     return (
         <div className='expense'>
             <ExpenseHeader toggleModalHandler={toggleModalHandler} toggleFilterModalHandler={toggleFilterHandler} />
