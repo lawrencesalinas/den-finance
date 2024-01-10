@@ -16,6 +16,7 @@ const DashBoard = () => {
     useEffect(() => {
         const loadTransactions = async () => {
             const response = await fetchTransactions(user)
+
             dispatch({
                 type: 'GET_TRANSACTIONS',
                 payload: response
