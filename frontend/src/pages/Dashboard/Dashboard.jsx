@@ -1,6 +1,6 @@
 import Expense from '../../components/Expense/Expense'
 import './dashBoard.scss'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import ExpenseDateFilter from '../../components/Expense/ExpenseDateFilter/ExpenseDateFilter'
 import Charts from '../../components/Charts/Charts'
 import Sidebar from '../../components/Sidebar/Sidebar'

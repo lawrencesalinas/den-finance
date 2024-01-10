@@ -32,7 +32,7 @@ const Header = () => {
                     <>
                         <li>
                             {/* <Link className='user-icon' to='/login'>Hi {user.name}</Link> */}
-                            <Link className='user-icon' style={{ border: 'none' }} to='/login'><PersonOutlineIcon /><span className='login-text' style={{ display: 'flex', alignItems: 'center' }}>Hi {user.name}</span></Link>
+                            <Link className='user-icon' style={{ border: 'none' }} to='/dashboard'><PersonOutlineIcon /><span className='login-text' style={{ display: 'flex', alignItems: 'center' }}>Hi {user.name}</span></Link>
                         </li>
                         <li>
                             <Link onClick={handleClick} className='logout-text' > Sign out</Link>
