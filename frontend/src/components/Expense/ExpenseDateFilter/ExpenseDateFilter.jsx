@@ -11,11 +11,31 @@ const ExpenseDateFilter = () => {
     const yearDropDownChangeHandler = (e) => {
         const newYear = { ...date, year: e.target.value }
         dispatch({ type: 'SET_DATE', payload: newYear })
+
+        console.log(date.year, 'year')
+        console.log(newYear, 'New Year')
+        console.log(date.month, 'month')
+        const newFilteredItems = transactions.filter((item) => {
+
+            return new Date(item.date).getFullYear() == newYear.year &&
+                (date.month === -1 || new Date(item.date).getMonth() == newYear.year)
+        })
+
+        setDisplayDate(`${getMonthAbbreviation(date.month)} ${date.year}`)
+        dispatch({ type: 'FILTER_TRANSACTIONS', payload: newFilteredItems })
     }
 
     const monthDropDownChangeHandler = (e) => {
         const newMonth = { ...date, month: parseFloat(e.target.value) }
         dispatch({ type: 'SET_DATE', payload: newMonth })
+
+        const newFilteredItems = transactions.filter((item) => {
+            return new Date(item.date).getFullYear() == date.year &&
+                (newMonth.month === -1 || new Date(item.date).getMonth() == newMonth.month)
+        })
+
+        setDisplayDate(`${getMonthAbbreviation(date.month)} ${date.year}`)
+        dispatch({ type: 'FILTER_TRANSACTIONS', payload: newFilteredItems })
     }
 
     const filterDateHandler = () => {
@@ -23,12 +43,11 @@ const ExpenseDateFilter = () => {
             return new Date(item.date).getFullYear() == date.year &&
                 (date.month === -1 || new Date(item.date).getMonth() == date.month)
         })
-
         setDisplayDate(`${getMonthAbbreviation(date.month)} ${date.year}`)
         dispatch({ type: 'FILTER_TRANSACTIONS', payload: newFilteredItems })
     }
 
-    const years = ['2020', '2021', '2022', '2023']
+    const years = ['2020', '2021', '2022', '2023', '2024']
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
     return (
@@ -54,7 +73,7 @@ const ExpenseDateFilter = () => {
                     ))}
                 </select>
             </div>
-            <button id='dateSubmit' onClick={filterDateHandler}><span><ArrowRightAltRoundedIcon /></span></button>
+            {/* <button id='dateSubmit' onClick={filterDateHandler}><span><ArrowRightAltRoundedIcon /></span></button> */}
             <h2>{displayDate}</h2>
         </div>
     )

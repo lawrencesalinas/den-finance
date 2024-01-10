@@ -33,10 +33,12 @@ export const TransactionProvider = ({ children }) => {
                 amount: Number(item.amount)
             }))
 
-            dispatch({
-                type: 'GET_TRANSACTIONS',
-                payload: convertedData
-            })
+            return convertedData
+
+            // dispatch({
+            //     type: 'GET_TRANSACTIONS',
+            //     payload: convertedData
+            // })
         } catch (error) {
             console.error('Error fetching transactions:', error)
         }
