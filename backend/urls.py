@@ -24,10 +24,12 @@ from django.urls import path, re_path, include
 5
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',TemplateView.as_view(template_name='index.html')),
+      path('', TemplateView.as_view(
+        template_name='index.html'), {'resource': ''}),
     path('api/expenses/', include('base.urls.expenses_urls')),
     path('api/users/', include('base.urls.user_urls')),
     # path('api/orders/', include('base.urls.order_urls')),
+    path('<path:resource>', TemplateView.as_view(template_name='index.html'))
 ]
 # setting the url, telling which folder to look into
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
