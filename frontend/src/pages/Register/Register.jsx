@@ -1,14 +1,10 @@
 import "./register.scss"
-import { useEffect, useState } from 'react'
-// import { toast } from 'react-toastify'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { register, reset } from '../features/auth/authSlice'
+import { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 // import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 // import Spinner from "../components/shared/Spinner"
 // import Header from "../components/layouts/Header"
-
-import { useSignup } from "../../hooks/useSignUp"
+import { signup } from "../../context/auth/AuthAction"
 
 function Register() {
     const [showPassword, setShowPassword] = useState(false)
@@ -20,45 +16,46 @@ function Register() {
     })
 
     const { name, email, password, confirmPassword } = formData
-    const { signup, error, isLoading } = useSignup()
+    const [error, setError] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     const navigate = useNavigate()
 
-
-    // const { user, isLoading, isError, isSuccess, message } = useSelector(state => state.auth)
-
-    // useEffect(() => {
-    //     if (isError) {
-    //         toast.error(message)
-    //     }
-
-    //     // Redirect when logged in
-    //     if (isSuccess || user) {
-    //         navigate('/')
-    //     }
-
-    //     dispatch(reset())
-    // }, [isError, isSuccess, user, message, navigate, dispatch])
-
     const onChange = (e) => {
-        setFormData((prevState) => (
-            {
-                ...prevState,
-                [e.target.name]: e.target.value
-            }
-        ))
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
     }
 
     const onSubmit = async (e) => {
         e.preventDefault()
 
-
         if (password !== confirmPassword) {
+            setError('Passwords do not match')
             throw Error('Passwords do not match')
         } else {
-            await signup(name, email, password)
+            try {
+                // Call the signUp function directly
+                const user = await signup({
+                    name,
+                    email,
+                    password,
+                })
+
+                // Save the user data to localStorage
+                localStorage.setItem('user', JSON.stringify(user))
+
+                // Handle successful registration
+                // You can navigate or display a success message here
+                navigate('/dashboard')
+            } catch (error) {
+                // Handle registration error
+                console.error(error)
+                setError('User with this email already exists')
+                // You can display an error message to the user here
+            }
         }
-        navigate('/dashboard')
     }
 
     // if (isLoading) {
@@ -84,9 +81,11 @@ function Register() {
                     </div>
                     <div className="signupbtns">
                         <div className="signuphead">
-                            <button disabled={isLoading} className="signupbtn">SIGN UP {" "}</button>
-                            {error && <div className="error">{error}</div>}
+                            <button className="signupbtn">SIGN UP {" "}</button>
                         </div>
+
+                        <br />
+                        {error && <div style={{ color: 'red' }} className="error">{error}</div>}
 
                         <h4 className='or'><span>OR</span></h4>
 

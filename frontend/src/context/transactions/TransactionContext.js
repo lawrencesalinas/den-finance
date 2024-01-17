@@ -1,6 +1,7 @@
 import { createContext, useReducer, } from "react"
 import transactionReducer from "./TransactionReducer"
-import apiUrl from "../../apiConfig"
+import apiUrl from "../../utils/apiConfig"
+
 
 const TransactionContext = createContext()
 
@@ -43,7 +44,7 @@ export const TransactionProvider = ({ children }) => {
         try {
             // setLoading(true)
 
-            const response = await fetch('http://localhost:8000/api/expenses/create/', {
+            const response = await fetch(`${apiUrl}/api/expenses/create/`, {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",

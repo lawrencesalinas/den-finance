@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
+import apiUrl from '../utils/apiConfig'
 
-import apiUrl from '../apiConfig'
+
 
 export const useLogin = () => {
     const [error, setError] = useState(null)
@@ -12,7 +13,7 @@ export const useLogin = () => {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch(`http://localhost:8000/api/users/login/`, {
+        const response = await fetch(`${apiUrl}/api/users/login/`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -23,6 +24,7 @@ export const useLogin = () => {
         const json = await response.json()
 
         if (!response.ok) {
+            console.log(json.error)
             setIsLoading(false)
             setError(json.error)
         }

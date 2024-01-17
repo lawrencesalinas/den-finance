@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import './expenseHeader.scss'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AddIcon from '@mui/icons-material/Add'
-
 import SearchIcon from '@mui/icons-material/Search'
-import apiUrl from '../../../apiConfig'
+
 
 
 const ExpenseHeader = ({ toggleModalHandler, toggleFilterModalHandler }) => {

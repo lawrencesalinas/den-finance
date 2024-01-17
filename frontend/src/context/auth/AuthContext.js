@@ -1,11 +1,13 @@
-import { createContext, useReducer, useEffect } from "react"
+import { createContext, useContext, useReducer, useEffect } from "react"
 import authReducer from './AuthReducer'
+
 export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(authReducer, {
-        user: null
+        user: null,
+        isAuthenticated: false,
     })
 
     useEffect(() => {
@@ -16,11 +18,22 @@ export const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    const logout = () => {
+        localStorage.removeItem('user')
+        dispatch({ type: 'LOGOUT' })
+    }
+
     return (
-        <AuthContext.Provider value={{ ...state, dispatch }}>
+        <AuthContext.Provider value={{ ...state, dispatch, logout }}>
             {children}
         </AuthContext.Provider >
     )
 }
 
-export default AuthContext
+export const useAuthContext = () => {
+    const context = useContext(AuthContext)
+    if (!context) {
+        throw new Error('useAuthContext must be used within an AuthProvider')
+    }
+    return context
+}

@@ -1,8 +1,8 @@
 let apiUrl
 const apiUrls = {
     // YOU MUST CHANGE PRODUCTION URL WHEN DEPLOYING
-    production: 'https://den-finance-tracker.onrender.com',
-    development: "http://localhost:8000/"
+    production: "https://den-finance-tracker.onrender.com",
+    development: "http://127.0.0.1:8000",
 }
 
 if (window.location.hostname === "localhost") {

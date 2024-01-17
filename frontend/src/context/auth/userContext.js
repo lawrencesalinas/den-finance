@@ -1,25 +1,27 @@
-import { createContext, useReducer } from "react"
-import userReducer from "./AuthReducer"
+// import { createContext, useReducer } from "react"
+// import userReducer from "./AuthReducer"
 
-const UserContext = createContext()
+// const UserContext = createContext()
 
-export const UserProvider = ({ children }) => {
-    const initialState = {
-        userData: {},
-        loading: false,
-    }
-    const [state, dispatch] = useReducer(userReducer, initialState)
+// export const UserProvider = ({ children }) => {
+//     const initialState = {
+//         userData: {},
+//         isAuthenticated: false,
+//         loading: false,
 
-    return (
-        <UserContext.Provider
-            value={{
-                dispatch,
-                ...state,
-            }}
-        >
-            {children}
-        </UserContext.Provider>
-    )
-}
+//     }
+//     const [state, dispatch] = useReducer(userReducer, initialState)
 
-export default UserContext
+//     return (
+//         <UserContext.Provider
+//             value={{
+//                 dispatch,
+//                 ...state,
+//             }}
+//         >
+//             {children}
+//         </UserContext.Provider>
+//     )
+// }
+
+// export default UserContext

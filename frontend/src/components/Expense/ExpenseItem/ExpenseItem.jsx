@@ -1,7 +1,6 @@
 import React, { useState, useTransition } from 'react'
 import './expenseItem.scss'
-import apiUrl from '../../../apiConfig'
-
+import apiUrl from '../../../utils/apiConfig'
 
 import CreateIcon from '@mui/icons-material/Create'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
