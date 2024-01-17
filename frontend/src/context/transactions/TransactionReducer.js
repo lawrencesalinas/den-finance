@@ -1,6 +1,6 @@
 const transactionReducer = (state, action) => {
     switch (action.type) {
-        case 'GET_TRANSACTIONS':
+        case 'SET_TRANSACTIONS':
             return {
                 ...state,
                 transactions: action.payload,
@@ -16,10 +16,12 @@ const transactionReducer = (state, action) => {
             return {
                 ...state,
                 transactions: [...state.transactions, action.payload],
+                filterTransactions: [...state.filterTransactions, action.payload], // Add to filtered transactions
             }
         case 'DELETE_TRANSACTION':
             return {
-                transactions: state.transactions.filter((x) => x.id !== action.payload.id)
+                transactions: state.transactions.filter((x) => x.id !== action.payload.id),
+                filterTransactions: state.filterTransactions.filter((x) => x.id !== action.payload.id) // Remove from filtered transactions
             }
         case 'SET_LOADING':
             return {

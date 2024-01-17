@@ -32,7 +32,7 @@ const renderCustomizedLabel = ({
 
 export default function PieCharts() {
 
-    const { filterTransactions, CustomTooltip } = useContext(TransactionContext)
+    const { transactions, CustomTooltip } = useContext(TransactionContext)
 
     const aggregateData = (transactions) => {
         const aggregatedData = {}
@@ -54,7 +54,7 @@ export default function PieCharts() {
         return Object.entries(aggregatedData).map(([category, amount]) => ({ category, amount }))
     }
 
-    const aggregatedData = aggregateData(filterTransactions)
+    const aggregatedData = aggregateData(transactions)
 
 
 

@@ -12,9 +12,6 @@ const ExpenseDateFilter = () => {
         const newYear = { ...date, year: e.target.value }
         dispatch({ type: 'SET_DATE', payload: newYear })
 
-        console.log(date.year, 'year')
-        console.log(newYear, 'New Year')
-        console.log(date.month, 'month')
         const newFilteredItems = transactions.filter((item) => {
 
             return new Date(item.date).getFullYear() == newYear.year &&

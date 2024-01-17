@@ -6,28 +6,32 @@ import Charts from '../../components/Charts/Charts'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import { useTransactionsContext } from '../../hooks/useTransactionContext'
 import { useAuthContext } from '../../hooks/useAuthContext'
-
-
+import { fetchTransactions } from '../../context/transactions/TransactionAction'
 
 const DashBoard = () => {
 
-    const { fetchTransactions, dispatch } = useTransactionsContext()
+    const { dispatch } = useTransactionsContext()
     const { user } = useAuthContext()
 
-    useEffect(() => {
-        const loadTransactions = async () => {
-            const response = await fetchTransactions(user)
+    // useEffect(() => {
+    //     console.log('here')
+    //     const getUserTransactions = async () => {
+    //         try {
+    //             const transactions = await fetchTransactions(user)
 
-            dispatch({
-                type: 'GET_TRANSACTIONS',
-                payload: response
-            })
-        }
+    //             // Dispatch the fetched transactions to your context
+    //             dispatch({ type: 'SET_TRANSACTIONS', payload: transactions })
+    //         } catch (error) {
+    //             console.error('Error fetching user transactions:', error)
+    //         }
 
-        if (user) {
-            loadTransactions()
-        }
-    }, [user, dispatch])
+    //     }
+
+    //     if (user) {
+    //         getUserTransactions()
+    //     }
+
+    // }, [user, dispatch])
     return (
         <div className="dashboard-wrapper">
             <Sidebar />

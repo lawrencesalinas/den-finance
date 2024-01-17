@@ -24,15 +24,16 @@ const ExpenseSearchFilter = ({ toggleFilterModal }) => {
         const maxVal = filters.max ? parseInt(filters.max, 10) : Infinity
 
         const newFilteredItems = transactions.filter((item) => {
-
+            console.log(item, 'item')
             return item.amount >= minVal &&
                 item.amount <= maxVal &&
                 (category === '' || item.category === category) && // filter for category
                 (type === 'all' ? (item.type === 'expense' || item.type === 'income') : item.type === type) &&
                 item.name.toLowerCase().includes(name.toLowerCase()) &&
-                new Date(item.date).getFullYear() == date.year &&
+                new Date(item.date).getFullYear() == date?.year &&
                 (date.month === -1 || new Date(item.date).getMonth() == date.month)
         })
+        console.log(newFilteredItems, 'test')
         dispatch({ type: 'FILTER_TRANSACTIONS', payload: newFilteredItems })
     }
 

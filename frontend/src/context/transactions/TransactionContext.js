@@ -1,11 +1,14 @@
-import { createContext, useReducer, } from "react"
+import { createContext, useEffect, useReducer, } from "react"
 import transactionReducer from "./TransactionReducer"
 import apiUrl from "../../utils/apiConfig"
+import { fetchTransactions } from "./TransactionAction"
+import { useAuthContext } from "../auth/AuthContext"
 
 
 const TransactionContext = createContext()
 
 export const TransactionProvider = ({ children }) => {
+
     const initialState = {
         transactions: [],
         filterTransactions: [],
@@ -13,71 +16,31 @@ export const TransactionProvider = ({ children }) => {
         date: { year: new Date().getFullYear(), month: new Date().getMonth() }
     }
 
+    const { user } = useAuthContext()
+
     const [state, dispatch] = useReducer(transactionReducer, initialState)
 
-    const fetchTransactions = async (user) => {
-        try {
-            const response = await fetch(`${apiUrl}/api/expenses/`, {
-                headers: {
-                    'Content-type': 'application/json',
-                    Authorization: `Bearer ${user.token}`
-                }
-            })
-            if (!response.ok) {
-                throw new Error('Network response was not ok')
+
+    useEffect(() => {
+        console.log('here')
+        const getUserTransactions = async () => {
+            try {
+                const transactions = await fetchTransactions(user)
+
+                // Dispatch the fetched transactions to your context
+                dispatch({ type: 'SET_TRANSACTIONS', payload: transactions })
+            } catch (error) {
+                console.error('Error fetching user transactions:', error)
             }
 
-            const data = await response.json()
-
-            const convertedData = data.map(item => ({
-                ...item,
-                amount: Number(item.amount)
-            }))
-
-            return convertedData
-        } catch (error) {
-            console.error('Error fetching transactions:', error)
         }
-    }
 
-    const createTransaction = async (data, user) => {
-        try {
-            // setLoading(true)
-
-            const response = await fetch(`${apiUrl}/api/expenses/create/`, {
-                method: "POST",
-                mode: "cors",
-                cache: "no-cache",
-                credentials: "same-origin",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${user.token}`
-                },
-                body: JSON.stringify(data),
-            })
-
-            if (response.ok) {
-                alert('Item succesfully added')
-            }
-
-            if (!response.ok) {
-                throw new Error('Failed to create transaction.')
-            }
-
-
-            // const responseData = await response.json()
-            // // Optional: If you want to update the state after adding a transaction, you can dispatch an action here.
-            // console.log(responseData)
-            fetchTransactions(user)
-
-        } catch (error) {
-            console.log(error)
-        } finally {
-            setLoading(false)
+        if (user) {
+            getUserTransactions()
         }
-    }
 
-    const setLoading = () => dispatch({ tpye: 'SET_LOADING', })
+    }, [user, dispatch])
+
 
 
     const getMonthAbbreviation = (monthNumber) => {
@@ -107,8 +70,6 @@ export const TransactionProvider = ({ children }) => {
                 filterTransactions: state.filterTransactions,
                 loading: state.loading,
                 date: state.date,
-                fetchTransactions,
-                createTransaction,
                 getMonthAbbreviation,
                 CustomTooltip,
                 dispatch

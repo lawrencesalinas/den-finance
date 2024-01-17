@@ -10,10 +10,10 @@ const Charts = () => {
     const { filterTransactions, transactions, date } = useContext(TransactionContext)
 
     const totalExpenses = transactions
-        .filter(record => record.type === 'expense')
-        .reduce((acc, record) => acc + parseInt(record.amount), 0).toFixed(2)
+        .filter(record => record?.type === 'expense')
+        .reduce((acc, record) => acc + parseInt(record?.amount), 0).toFixed(2)
 
-    let totalAmount = transactions.reduce((acc, record) => acc + parseInt(record.amount), 0).toFixed(2)
+    let totalAmount = transactions.reduce((acc, record) => acc + parseInt(record?.amount), 0).toFixed(2)
     totalAmount = totalAmount - totalExpenses
 
     return (

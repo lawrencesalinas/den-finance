@@ -33,7 +33,7 @@ function ExpenseItem({ id, date, name, amount, category, sign }) {
         const json = await response.json()
 
         if (response.ok) {
-            dispatch({ type: "DELETE_TRANSACTION", payload: json })
+            dispatch({ type: "DELETE_TRANSACTION", payload: { id } })
         }
     }
 

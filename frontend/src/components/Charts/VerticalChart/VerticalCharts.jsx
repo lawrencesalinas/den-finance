@@ -4,14 +4,14 @@ import TransactionContext from '../../../context/transactions/TransactionContext
 
 export default function VerticalBarCharts({ data }) {
 
-    const { getMonthAbbreviation, CustomTooltip } = useContext(TransactionContext)
+    const { transactions, getMonthAbbreviation, CustomTooltip } = useContext(TransactionContext)
 
-    const aggregateDataByMonth = (data) => {
+    const aggregateDataByMonth = () => {
         const aggregatedData = {}
 
 
-        const expenseData = data.filter(data => {
-            return data.type === 'expense'
+        const expenseData = transactions.filter(data => {
+            return data?.type === 'expense'
         })
         expenseData.forEach(record => {
             const dateObj = new Date(record.date)
@@ -19,9 +19,9 @@ export default function VerticalBarCharts({ data }) {
             const key = `${getMonthAbbreviation(month)}`
 
             if (aggregatedData[key]) {
-                aggregatedData[key] += record.amount
+                aggregatedData[key] += record?.amount
             } else {
-                aggregatedData[key] = record.amount
+                aggregatedData[key] = record?.amount
             }
         })
 
@@ -31,7 +31,7 @@ export default function VerticalBarCharts({ data }) {
         return sortedData.slice(-3)
     }
 
-    const aggregatedData = aggregateDataByMonth(data)
+    const aggregatedData = aggregateDataByMonth(transactions)
 
     return (
         <ResponsiveContainer width='100%' height={200}>

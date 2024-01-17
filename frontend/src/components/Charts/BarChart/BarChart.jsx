@@ -37,7 +37,7 @@ export default function BarCharts({ filterType }) {
         return Object.entries(aggregatedData).map(([date, amount]) => ({ date, amount }))
     }
 
-    const aggregatedData = aggregateData(filterTransactions, filterType)
+    const aggregatedData = aggregateData(filterTransactions, 'expense')
 
     // Step 2: Sort aggregated data by date or month
     aggregatedData.sort((a, b) => new Date(a.date) - new Date(b.date))

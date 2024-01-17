@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import './expenseForm.scss'
 import TransactionContext from '../../../context/transactions/TransactionContext'
 import { useAuthContext } from '../../../hooks/useAuthContext'
-
+import { createTransaction } from '../../../context/transactions/TransactionAction'
 
 const formatDate = (date) => {
     return new Intl.DateTimeFormat('en-CA', {
@@ -15,7 +15,7 @@ const formatDate = (date) => {
 
 const ExpenseForm = () => {
     const { user } = useAuthContext()
-    const { createTransaction, dispatch } = useContext(TransactionContext)
+    const { dispatch } = useContext(TransactionContext)
 
     const [name, setName] = useState('')
     const [date, setDate] = useState(formatDate(new Date(), 'yyyy-MM-dd'))
@@ -28,57 +28,73 @@ const ExpenseForm = () => {
 
     const nameChangeHandler = (e) => {
         const value = e.target.value
-        if (value === '') {
-            setMessage(null)
-            setBtnDisabled(true)
-        } else if (value.trim().length < 3) {
+        const isNameValid = value.trim().length >= 4
+        const isAmountValid = amount !== ''
+
+        if (!isNameValid) {
             setMessage('Name must be at least 4 characters')
-            setBtnDisabled(true)
+            // setBtnDisabled(true)
+        } else if (!isAmountValid) {
+            setMessage('Please enter an amount')
+            // setBtnDisabled(true)
         } else {
             setMessage(null)
-            setBtnDisabled(true)
+            // setBtnDisabled(true)
         }
         setName(value)
-        if (name !== '' && amount !== '') {
-            setBtnDisabled(false)
-        } else {
-            setBtnDisabled(true)
-        }
+
+
+        // if (name !== '' && amount !== '') {
+        //     setBtnDisabled(false)
+        // } else {
+        //     setBtnDisabled(true)
+        // }
     }
 
     const dateChnageHandler = (e) => {
         const value = e.target.value
         setDate(value) // value is already in 'YYYY-MM-DD' format
     }
+
     const amountChangeHandler = (e) => {
         const value = e.target.value
-        if (value === '') {
+        const isNameValid = name.trim().length >= 4
+        const isAmountValid = value !== ''
+
+        setBtnDisabled(!(isNameValid && isAmountValid))
+
+        if (!isAmountValid) {
             setMessage('Please enter an amount')
-            setBtnDisabled(true)
+        } else if (!isNameValid) {
+            setMessage('Name must be at least 4 characters')
         } else {
             setMessage(null)
         }
+
         setAmount(value)
-        if (name !== '' && amount !== '') {
-            setBtnDisabled(false)
-        } else if (name === '' || amount === '') {
-            setBtnDisabled(true)
-        }
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
 
-        if (name.trim().length >= 4) {
-            const expenseData = {
-                name: name,
-                amount: amount,
-                date: new Date(date),
-                category: category,
-                type: type
-            }
-            createTransaction(expenseData, user)
+        const expenseData = {
+            name: name,
+            amount: amount,
+            date: new Date(date),
+            category: category,
+            type: type
         }
+
+        try {
+            const newTransaction = await createTransaction(expenseData, user)
+
+            // Dispatch an action to update the transactions in the state
+            dispatch({ type: 'ADD_TRANSACTION', payload: newTransaction })
+            // alert('Item successfully added')
+        } catch (error) {
+            console.log(error)
+        }
+
 
         setName('')
         setAmount('')
