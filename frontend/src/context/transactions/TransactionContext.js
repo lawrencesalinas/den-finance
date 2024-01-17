@@ -22,7 +22,6 @@ export const TransactionProvider = ({ children }) => {
 
 
     useEffect(() => {
-        console.log('here')
         const getUserTransactions = async () => {
             try {
                 const transactions = await fetchTransactions(user)

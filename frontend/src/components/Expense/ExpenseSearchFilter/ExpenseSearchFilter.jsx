@@ -24,7 +24,6 @@ const ExpenseSearchFilter = ({ toggleFilterModal }) => {
         const maxVal = filters.max ? parseInt(filters.max, 10) : Infinity
 
         const newFilteredItems = transactions.filter((item) => {
-            console.log(item, 'item')
             return item.amount >= minVal &&
                 item.amount <= maxVal &&
                 (category === '' || item.category === category) && // filter for category
@@ -33,7 +32,7 @@ const ExpenseSearchFilter = ({ toggleFilterModal }) => {
                 new Date(item.date).getFullYear() == date?.year &&
                 (date.month === -1 || new Date(item.date).getMonth() == date.month)
         })
-        console.log(newFilteredItems, 'test')
+
         dispatch({ type: 'FILTER_TRANSACTIONS', payload: newFilteredItems })
     }
 

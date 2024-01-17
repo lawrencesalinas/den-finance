@@ -5,33 +5,32 @@ import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded'
 const ExpenseDateFilter = () => {
 
     const { transactions, date, dispatch, getMonthAbbreviation } = useContext(TransactionContext)
-    console.log(date, 'initial')
+
     const [displayDate, setDisplayDate] = useState(`${getMonthAbbreviation(date?.month)} ${date?.year}`)
 
     const yearDropDownChangeHandler = (e) => {
-        const newYear = { ...date, year: e.target.value }
-        dispatch({ type: 'SET_DATE', payload: newYear })
+        const updatedDate = { ...date, year: parseFloat(e.target.value) }
+        dispatch({ type: 'SET_DATE', payload: updatedDate })
 
         const newFilteredItems = transactions.filter((item) => {
-
-            return new Date(item.date).getFullYear() == newYear.year &&
-                (date.month === -1 || new Date(item.date).getMonth() == newYear.year)
+            return new Date(item.date).getFullYear() == updatedDate.year &&
+                (date.month === -1 || new Date(item.date).getFullYear() == updatedDate.year)
         })
 
-        setDisplayDate(`${getMonthAbbreviation(date.month)} ${date.year}`)
+        setDisplayDate(`${getMonthAbbreviation(updatedDate.month)} ${updatedDate.year}`)
         dispatch({ type: 'FILTER_TRANSACTIONS', payload: newFilteredItems })
     }
 
     const monthDropDownChangeHandler = (e) => {
-        const newMonth = { ...date, month: parseFloat(e.target.value) }
-        dispatch({ type: 'SET_DATE', payload: newMonth })
+        const updatedDate = { ...date, month: parseFloat(e.target.value) }
+        dispatch({ type: 'SET_DATE', payload: updatedDate })
 
         const newFilteredItems = transactions.filter((item) => {
             return new Date(item.date).getFullYear() == date.year &&
-                (newMonth.month === -1 || new Date(item.date).getMonth() == newMonth.month)
+                (updatedDate.month === -1 || new Date(item.date).getMonth() == updatedDate.month)
         })
 
-        setDisplayDate(`${getMonthAbbreviation(date.month)} ${date.year}`)
+        setDisplayDate(`${getMonthAbbreviation(updatedDate.month)} ${updatedDate.year}`)
         dispatch({ type: 'FILTER_TRANSACTIONS', payload: newFilteredItems })
     }
 

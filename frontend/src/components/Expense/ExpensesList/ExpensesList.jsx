@@ -9,7 +9,6 @@ function ExpensesList() {
     let expensesContent = <p>No expenses found</p>
 
     useEffect(() => {
-        console.log('triggered')
         // Sort transactions by date in ascending order
         const sorted = [...filterTransactions].sort((a, b) => {
             // Compare the primary 'date' field
