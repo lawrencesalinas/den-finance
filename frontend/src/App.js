@@ -13,6 +13,7 @@ import Sidebar from "./components/Sidebar/Sidebar.jsx"
 import Login from "./pages/Login/Login.jsx"
 import Register from "./pages/Register/Register.jsx"
 import Expenses from "./pages/Expenses/Expenses.jsx"
+import Footer from "./components/Footer/Footer.jsx"
 
 
 
@@ -25,6 +26,7 @@ function App() {
         {/* <Sidebar /> */}
         <Outlet />
         {/* <Sidebar /> */}
+        {<Footer />}
       </div>
     )
   }

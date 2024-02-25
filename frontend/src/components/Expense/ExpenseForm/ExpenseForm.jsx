@@ -53,6 +53,7 @@ const ExpenseForm = () => {
 
     const dateChnageHandler = (e) => {
         const value = e.target.value
+        console.log(e.target.value, 'date')
         setDate(value) // value is already in 'YYYY-MM-DD' format
     }
 
