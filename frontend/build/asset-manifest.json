@@ -1,14 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.cc7ad1fb.css",
-    "main.js": "/static/js/main.6f8c494d.js",
+    "main.css": "/static/css/main.ecb15fc2.css",
+    "main.js": "/static/js/main.397a49c2.js",
+    "static/media/denfinance-lg.png": "/static/media/denfinance-lg.c52108e5e6058f67870a.png",
+    "static/media/transactions-lg.png": "/static/media/transactions-lg.b8c8c9f3a682023026b6.png",
     "static/media/logo.png": "/static/media/logo.c1d489f17423a0d307bb.png",
+    "static/media/mobile-1.png": "/static/media/mobile-1.989e4fc563bed8965d0e.png",
+    "static/media/mobile-2.png": "/static/media/mobile-2.465ce8fd0aaac3961668.png",
     "index.html": "/index.html",
-    "main.cc7ad1fb.css.map": "/static/css/main.cc7ad1fb.css.map",
-    "main.6f8c494d.js.map": "/static/js/main.6f8c494d.js.map"
+    "main.ecb15fc2.css.map": "/static/css/main.ecb15fc2.css.map",
+    "main.397a49c2.js.map": "/static/js/main.397a49c2.js.map"
   },
   "entrypoints": [
-    "static/css/main.cc7ad1fb.css",
-    "static/js/main.6f8c494d.js"
+    "static/css/main.ecb15fc2.css",
+    "static/js/main.397a49c2.js"
   ]
 }
