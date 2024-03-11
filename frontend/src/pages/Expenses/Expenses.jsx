@@ -1,12 +1,10 @@
-import React, { useContext } from 'react'
 import { useTransactionsContext } from '../../hooks/useTransactionContext'
 import ExpenseItem from '../../components/Expense/ExpenseItem/ExpenseItem'
 
 function Expenses() {
 
-    const { transactions, filterTransactions } = useTransactionsContext()
+    const { filterTransactions } = useTransactionsContext()
 
-    let expensesContent = <p>No expenses found</p>
     if (filterTransactions.length === 0) {
         return <p style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>We couldn't find any transactions that matched the filter criteria you chose. Please check your choices and try again.</p>
     }
@@ -29,10 +27,7 @@ function Expenses() {
                     sign={sign}
                 />
             })}
-
-
         </div>
-
     )
 }
 

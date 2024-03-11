@@ -9,7 +9,6 @@ export default function VerticalBarCharts({ data }) {
     const aggregateDataByMonth = () => {
         const aggregatedData = {}
 
-
         const expenseData = transactions.filter(data => {
             return data?.type === 'expense'
         })
@@ -49,6 +48,5 @@ export default function VerticalBarCharts({ data }) {
                 <Bar dataKey="amount" fill="#8884d8" />
             </BarChart>
         </ResponsiveContainer>
-
     )
 }

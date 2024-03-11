@@ -12,7 +12,6 @@ const formatDate = (date) => {
     }).format(date)
 }
 
-
 const ExpenseForm = () => {
     const { user } = useAuthContext()
     const { dispatch } = useContext(TransactionContext)
@@ -42,18 +41,10 @@ const ExpenseForm = () => {
             // setBtnDisabled(true)
         }
         setName(value)
-
-
-        // if (name !== '' && amount !== '') {
-        //     setBtnDisabled(false)
-        // } else {
-        //     setBtnDisabled(true)
-        // }
     }
 
     const dateChnageHandler = (e) => {
         const value = e.target.value
-        console.log(e.target.value, 'date')
         setDate(value) // value is already in 'YYYY-MM-DD' format
     }
 

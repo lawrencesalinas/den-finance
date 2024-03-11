@@ -1,14 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import './expense.scss'
 import ExpenseHeader from './ExpenseHeader/ExpenseHeader'
 import NewExpense from './NewExpense/NewExpense'
 import ExpensesList from './ExpensesList/ExpensesList'
 import ExpenseSearchFilter from './ExpenseSearchFilter/ExpenseSearchFilter'
-import TransactionContext from '../../context/transactions/TransactionContext'
 
-const Expense = ({ addExpenseHandler, filteredExpenses, }) => {
-
-    const { transactions, filterTransactions } = useContext(TransactionContext)
+const Expense = ({ addExpenseHandler }) => {
 
     const [showAddExpenseModal, setAddExpenseModal] = useState(false)
     const [showFilterModal, setShowFilterModal] = useState()

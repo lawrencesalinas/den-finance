@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts"
 import TransactionContext from "../../../context/transactions/TransactionContext"
 
@@ -29,7 +29,6 @@ const renderCustomizedLabel = ({
     )
 }
 
-
 export default function PieCharts() {
 
     const { filterTransactions, CustomTooltip } = useContext(TransactionContext)
@@ -55,8 +54,6 @@ export default function PieCharts() {
     }
 
     const aggregatedData = aggregateData(filterTransactions)
-
-
 
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#634a6b']
 

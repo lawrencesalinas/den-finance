@@ -42,8 +42,6 @@ export default function BarCharts({ filterType }) {
     // Step 2: Sort aggregated data by date or month
     aggregatedData.sort((a, b) => new Date(a.date) - new Date(b.date))
 
-
-
     return (
         <ResponsiveContainer width='100%' height={400}>
             <BarChart className="barChart" data={aggregatedData} margin={{ top: 20, right: 20, left: 0 }}>

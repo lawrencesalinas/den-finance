@@ -7,7 +7,7 @@ import './charts.scss'
 
 const Charts = () => {
 
-    const { filterTransactions, transactions, date } = useContext(TransactionContext)
+    const { transactions } = useContext(TransactionContext)
 
     const totalExpenses = transactions
         .filter(record => record?.type === 'expense')
@@ -37,7 +37,6 @@ const Charts = () => {
                     <h2>${totalAmount}</h2>
                 </div>
             </div>
-
         </ div>
     )
 }

@@ -7,6 +7,7 @@ import mobile2 from '../../assets/mobile-2.png'
 import desktop from '../../assets/denfinance-lg.png'
 import transactions from '../../assets/transactions-lg.png'
 const Home = () => {
+
     return (
         <div className="home">
             <div className="home-content">
@@ -19,7 +20,7 @@ const Home = () => {
             <section className="image-section-1">
                 <picture>
                     <source media="(min-width: 768px)" srcSet={desktop} />
-                    <img src={mobile2} alt="" />
+                    <img src={mobile1} alt="mobile-graph" />
                 </picture>
             </section>
             <section className="cards-section">
@@ -35,18 +36,12 @@ const Home = () => {
                     <h3 class="card-title">Income Insights</h3>
                     <p class="card-text">Explore your income patterns with Income Insights. Track and analyze your earnings from various sources over time. Use interactive charts to set income goals and strategies for growth. Gain the knowledge to maximize your earnings and secure your financial future.</p>
                 </div>
-                {/* <div className="card">
-                    <img src="" alt="" className="card-icon" />
-                    <img src="" alt="" className="card-image" />
-                    <h3 class="card-title">Card Title 1</h3>
-                    <p class="card-text">This is a short description of what the card is about.</p>
-                </div> */}
             </section>
 
             <section className="image-section-2">
                 <picture>
                     <source media="(min-width: 768px)" srcSet={transactions} />
-                    <img src={mobile2} alt="" />
+                    <img src={mobile2} alt="bar-graph" />
                 </picture>
             </section>
         </div>
